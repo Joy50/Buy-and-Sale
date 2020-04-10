@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "546663415510",
+    "firebase_url": "https://eat-and-buy.firebaseio.com",
+    "project_id": "eat-and-buy",
+    "storage_bucket": "eat-and-buy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546663415510:android:20779ec60ddbb301dc1377",
+        "android_client_info": {
+          "package_name": "com.joy50.buysale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546663415510-m3t1vsakge3v7h9avegnrrmlqrtrdroh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPxBjNDJ_qBA6DnLLaQwrxD9wHgazHTTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546663415510-m3t1vsakge3v7h9avegnrrmlqrtrdroh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546663415510:android:df74956bb75afdffdc1377",
+        "android_client_info": {
+          "package_name": "com.joy50.eb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546663415510-m3t1vsakge3v7h9avegnrrmlqrtrdroh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPxBjNDJ_qBA6DnLLaQwrxD9wHgazHTTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546663415510-m3t1vsakge3v7h9avegnrrmlqrtrdroh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
