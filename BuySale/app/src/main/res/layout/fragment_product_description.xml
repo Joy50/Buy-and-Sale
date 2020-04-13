@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductDescriptionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tv_product_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="The updated Inspiron 15R N5110 features a number of design changes compared to last year’s Inspiron 15R. The overall look is essentially unchanged with a clean and sleek exterior, but at its core the 15R remains a budget laptop with a mostly plastic construction. The new 15R uses a hinge-forward LCD lid design that Dell first used in the premium Adamo series. I’m sure Dell designers will say it’s a way of reducing the size of the screen bezel with a 16:9 ratio widescreen display. However, as far as most people are concerned, it just means the back of the notebook sticks out more behind the screen."
+        android:textColor="@color/colorBlack"/>
+
+</FrameLayout>
