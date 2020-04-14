@@ -1,5 +1,6 @@
 package com.joy50.buysale;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,12 +34,20 @@ public class GridProductViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view;
+    public View getView(int position, View convertView, final ViewGroup parent) {
+        final View view;
         if (convertView == null){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.horizontal_scroll_item_layout,null);
             view.setElevation(0);
             view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    parent.getContext().startActivity(new Intent(parent.getContext(),ProductDetailsActivity.class));
+                }
+            });
 
             ImageView productImage = view.findViewById(R.id.h_s_product_image);
             TextView productTitle = view.findViewById(R.id.h_s_product_title);

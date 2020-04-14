@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -26,6 +28,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private ViewPager productDetailsViewPager;
     private TabLayout productDetailsTabLayout;
+
+    /*Rating Layout*/
+    private LinearLayout rateNowContainer;
+    /*Rating Layout*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +91,30 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+        /*Rating Layout*/
+        rateNowContainer = findViewById(R.id.rate_now_container);
+
+        for (int x = 0;x<rateNowContainer.getChildCount();x++){
+            final int startPosition = x;
+            rateNowContainer.getChildAt(x).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setRating(startPosition);
+                }
+            });
+        }
+        /*Rating Layout*/
+    }
+
+    private void setRating(int startPosition) {
+        for (int x = 0;x<rateNowContainer.getChildCount();x++){
+            ImageView startBtn = (ImageView)rateNowContainer.getChildAt(x);
+            startBtn.setImageTintList(ColorStateList.valueOf(Color.parseColor("#bebebe")));
+            if (x <= startPosition){
+                startBtn.setImageTintList(ColorStateList.valueOf(Color.parseColor("#ffbb00")));
+            }
+        }
     }
 
     @Override

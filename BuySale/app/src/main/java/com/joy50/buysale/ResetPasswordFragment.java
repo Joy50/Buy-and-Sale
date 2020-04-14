@@ -56,7 +56,7 @@ public class ResetPasswordFragment extends Fragment {
         emailIconContainer = view.findViewById(R.id.forgot_password_layout);
         emailIcon = view.findViewById(R.id.forgot_password_email_icon);
         emailIconText = view.findViewById(R.id.forgot_password_email_text);
-        hori_progress = view.findViewById(R.id.progressBar2);
+        hori_progress = view.findViewById(R.id.progressBar1);
         emailIcon.setVisibility(View.INVISIBLE);
         emailIconText.setVisibility(View.INVISIBLE);
         hori_progress.setVisibility(View.INVISIBLE);
