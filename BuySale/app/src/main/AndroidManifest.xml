@@ -16,7 +16,7 @@
         <activity
             android:name=".CatagoryActivity"
             android:parentActivityName=".MenuActivity" />
-        <activity android:name=".MenuActivity" />
+        <activity android:name=".MenuActivity"/>
         <activity
             android:name=".LoginRegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

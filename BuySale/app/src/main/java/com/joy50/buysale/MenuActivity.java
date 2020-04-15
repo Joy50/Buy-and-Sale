@@ -1,7 +1,9 @@
 package com.joy50.buysale;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -11,13 +13,18 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
-public class MenuActivity extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
 
-    FrameLayout frameLayout;
+public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FrameLayout frameLayout;
     private static final int HOME_FRAGMENT = 0;
     private static final int CART_FRAGMENT = 1;
     private static int CurrentFragment;
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +32,14 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         frameLayout = findViewById(R.id.mainframe_layout);
         setFragment(new HomeFragment(),HOME_FRAGMENT);
+        mDrawerLayout = findViewById(R.id.navDrawer);
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+        mActionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView navigationView = findViewById(R.id.navView);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void setFragment(Fragment fragment,int fragmentNO){
@@ -45,7 +60,9 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        /*switch (id){
+            case mActionBarDrawerToggle:
+                return true;
             case R.id.search_main_menu:
                 //Todo:
             case R.id.cart_main_menu:
@@ -55,10 +72,59 @@ public class MenuActivity extends AppCompatActivity {
                 //Todo:
             default:
                 return super.onOptionsItemSelected(item);
+        }*/
+        if (mActionBarDrawerToggle.onOptionsItemSelected(item)){
+            return true;
         }
+        if (id == R.id.search_main_menu){
+            //todo:
+        }else if(id == R.id.cart_main_menu){
+            myCart();
+        }else if (id == R.id.notification_main_menu){
+            //todo:
+        }
+        return super.onOptionsItemSelected(item);
     }
     private void myCart(){
         invalidateOptionsMenu();
         setFragment(new MyCartFragment(),CART_FRAGMENT);
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.home:
+                //Todo:
+                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.myOrders:
+                //Todo:
+                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.rewards:
+                //Todo:
+                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.myCart:
+                myCart();
+                return true;
+            case R.id.myWishlist:
+                //Todo:
+                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.myAccount:
+                //Todo:
+                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.signout:
+                //Todo:
+                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                mDrawerLayout.closeDrawer(id);
+                return false;
+        }
+    }
+
 }
