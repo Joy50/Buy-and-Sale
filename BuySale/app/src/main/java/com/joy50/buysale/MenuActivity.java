@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
@@ -20,11 +21,15 @@ import com.google.android.material.navigation.NavigationView;
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FrameLayout frameLayout;
+
     private static final int HOME_FRAGMENT = 0;
-    private static final int CART_FRAGMENT = 1;
-    private static int CurrentFragment;
+    private static final int ORDER_FRAGMENT = 1;
+    private static final int CART_FRAGMENT = 3;
+
+    private static int CurrentFragment = -1;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +37,14 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_menu);
         frameLayout = findViewById(R.id.mainframe_layout);
         setFragment(new HomeFragment(),HOME_FRAGMENT);
+
         mDrawerLayout = findViewById(R.id.navDrawer);
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        NavigationView navigationView = findViewById(R.id.navView);
+        navigationView = findViewById(R.id.navView);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -60,19 +66,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        /*switch (id){
-            case mActionBarDrawerToggle:
-                return true;
-            case R.id.search_main_menu:
-                //Todo:
-            case R.id.cart_main_menu:
-                //Todo:
-                myCart();
-            case R.id.notification_main_menu:
-                //Todo:
-            default:
-                return super.onOptionsItemSelected(item);
-        }*/
         if (mActionBarDrawerToggle.onOptionsItemSelected(item)){
             return true;
         }
@@ -96,18 +89,24 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         switch (id){
             case R.id.home:
                 //Todo:
-                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                invalidateOptionsMenu();
+                startActivity(new Intent(getApplicationContext(),MenuActivity.class));
+                navigationView.getMenu().getItem(0).setChecked(true);
                 return true;
             case R.id.myOrders:
                 //Todo:
-                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                invalidateOptionsMenu();
+                setFragment(new MyOrdersFragment(),ORDER_FRAGMENT);
+                navigationView.getMenu().getItem(1).setChecked(true);
                 return true;
             case R.id.rewards:
                 //Todo:
                 Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.myCart:
+                invalidateOptionsMenu();
                 myCart();
+                navigationView.getMenu().getItem(3).setChecked(true);
                 return true;
             case R.id.myWishlist:
                 //Todo:

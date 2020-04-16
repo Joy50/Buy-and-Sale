@@ -6,4 +6,5 @@
     <color name="colorBlack">#000000</color>
     <color name="colorGreenish">#3EB255</color>
     <color name="colorBluish">#0022FF</color>
+    <color name="colorGrayish">#d3d3d3</color>
 </resources>
