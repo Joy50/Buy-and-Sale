@@ -3,6 +3,7 @@ package com.joy50.buysale;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,12 +25,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     private static final int HOME_FRAGMENT = 0;
     private static final int ORDER_FRAGMENT = 1;
+    private static final int MYREWARDS_FRAGMENT = 2;
     private static final int CART_FRAGMENT = 3;
+    private static final int WISHLIST_FRAGMENT = 4;
 
     private static int CurrentFragment = -1;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = findViewById(R.id.navView);
         navigationView.setNavigationItemSelectedListener(this);
+        drawerLayout = findViewById(R.id.navDrawer);
     }
 
     private void setFragment(Fragment fragment,int fragmentNO){
@@ -86,44 +91,37 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch (id){
-            case R.id.home:
-                //Todo:
-                invalidateOptionsMenu();
-                startActivity(new Intent(getApplicationContext(),MenuActivity.class));
-                navigationView.getMenu().getItem(0).setChecked(true);
-                return true;
-            case R.id.myOrders:
-                //Todo:
-                invalidateOptionsMenu();
-                setFragment(new MyOrdersFragment(),ORDER_FRAGMENT);
-                navigationView.getMenu().getItem(1).setChecked(true);
-                return true;
-            case R.id.rewards:
-                //Todo:
-                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.myCart:
-                invalidateOptionsMenu();
-                myCart();
-                navigationView.getMenu().getItem(3).setChecked(true);
-                return true;
-            case R.id.myWishlist:
-                //Todo:
-                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.myAccount:
-                //Todo:
-                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.signout:
-                //Todo:
-                Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                mDrawerLayout.closeDrawer(id);
-                return false;
+        if(id == R.id.home){
+            /*startActivity(new Intent(getApplicationContext(),MenuActivity.class));
+            navigationView.getMenu().getItem(0).setChecked(true);
+            //return true;*/
+            invalidateOptionsMenu();
+            setFragment(new HomeFragment(),HOME_FRAGMENT);
+            navigationView.getMenu().getItem(0).setChecked(true);
+        }else if(id == R.id.myOrders){
+            invalidateOptionsMenu();
+            setFragment(new MyOrdersFragment(),ORDER_FRAGMENT);
+            navigationView.getMenu().getItem(1).setChecked(true);
+        }else if (id == R.id.rewards){
+            invalidateOptionsMenu();
+            setFragment(new MyRewardsFragment(),MYREWARDS_FRAGMENT);
+            navigationView.getMenu().getItem(2).setChecked(true);
+        }else if (id == R.id.myCart){
+            invalidateOptionsMenu();
+            myCart();
+            navigationView.getMenu().getItem(3).setChecked(true);
+        }else if(id == R.id.myWishlist){
+            invalidateOptionsMenu();
+            setFragment(new MyWishListFragment(),WISHLIST_FRAGMENT);
+            navigationView.getMenu().getItem(4).setChecked(true);
+        }else if(id == R.id.myAccount){
+            //Todo:
         }
+        else if (id == R.id.signout){
+            //Todo:
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
 }

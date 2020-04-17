@@ -12,11 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProductDetailsActivity"></activity>
+        <activity android:name=".OrderDetailsActivity"></activity>
+        <activity android:name=".ProductDetailsActivity" />
         <activity
             android:name=".CatagoryActivity"
             android:parentActivityName=".MenuActivity" />
-        <activity android:name=".MenuActivity"/>
+        <activity android:name=".MenuActivity" />
         <activity
             android:name=".LoginRegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

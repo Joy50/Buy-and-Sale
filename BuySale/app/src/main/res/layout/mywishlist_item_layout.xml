@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    android:elevation="3dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
+
+    <ImageView
+        android:id="@+id/wish_list_product_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/iphone11pro" />
+
+    <TextView
+        android:id="@+id/wish_list_product_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Iphone 11 S Pro"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/wish_list_product_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/wish_list_cupon_image"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/wish_list_product_image"
+        app:layout_constraintTop_toBottomOf="@+id/wish_list_product_title"
+        app:srcCompat="@drawable/cupon_foreground" />
+
+    <TextView
+        android:id="@+id/wish_list_free_cupons_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Free Cupons"
+        android:textColor="#B600CA"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/wish_list_cupon_image"
+        app:layout_constraintStart_toEndOf="@+id/wish_list_cupon_image"
+        app:layout_constraintTop_toTopOf="@+id/wish_list_cupon_image" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/slider_background"
+        android:backgroundTint="@color/colorGreenish"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        app:layout_constraintStart_toEndOf="@+id/wish_list_product_image"
+        app:layout_constraintTop_toBottomOf="@+id/wish_list_free_cupons_available">
+
+        <TextView
+            android:id="@+id/tv_product_ratining_mini_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:text="4.5"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/star_foreground" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/wish_list_number_of_ratings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="(8540) ratings"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+
+    <ImageView
+        android:id="@+id/wish_list_remove_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/wish_list_number_of_ratings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/wish_list_number_of_ratings"
+        app:layout_constraintVertical_bias="0.319"
+        app:srcCompat="@drawable/remove" />
+
+    <TextView
+        android:id="@+id/wish_list_product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="$ 1099"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/wish_list_product_image"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/wish_list_cutted_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="$ 2000"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/wish_list_product_price"
+        app:layout_constraintStart_toEndOf="@+id/wish_list_product_price" />
+
+    <View
+        android:id="@+id/divider11"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/wish_list_cutted_price"
+        app:layout_constraintEnd_toEndOf="@+id/wish_list_cutted_price"
+        app:layout_constraintStart_toStartOf="@+id/wish_list_cutted_price"
+        app:layout_constraintTop_toTopOf="@+id/wish_list_cutted_price" />
+
+    <TextView
+        android:id="@+id/wish_list_payment_method"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cash On Delivery Available"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/wish_list_product_image"
+        app:layout_constraintStart_toStartOf="@+id/wish_list_product_price"
+        app:layout_constraintTop_toBottomOf="@+id/wish_list_product_price" />
+</androidx.constraintlayout.widget.ConstraintLayout>

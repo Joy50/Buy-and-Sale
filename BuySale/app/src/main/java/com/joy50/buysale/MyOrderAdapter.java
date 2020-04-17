@@ -1,5 +1,6 @@
 package com.joy50.buysale;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -53,7 +54,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         private TextView deliveryStatus;
         private LinearLayout rateNowContainer;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             productImage = itemView.findViewById(R.id.product_image);
@@ -61,6 +62,14 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             productTitle = itemView.findViewById(R.id.product_title);
             deliveryStatus = itemView.findViewById(R.id.order_delivered_date);
             rateNowContainer = itemView.findViewById(R.id.rate_now_container);
+
+            /*Adding Order Details in the Process*/
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(),OrderDetailsActivity.class));
+                }
+            });
         }
         private void setDeliveredProductsDetail(int productImageData,String productTitleData,String deliveryStatusData,int rating){
             productImage.setImageResource(productImageData);
