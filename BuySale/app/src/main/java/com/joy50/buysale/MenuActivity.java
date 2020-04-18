@@ -28,6 +28,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private static final int MYREWARDS_FRAGMENT = 2;
     private static final int CART_FRAGMENT = 3;
     private static final int WISHLIST_FRAGMENT = 4;
+    private static final int ACCOUNT_FRAGMENT = 5;
 
     private static int CurrentFragment = -1;
     private DrawerLayout mDrawerLayout;
@@ -92,9 +93,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.home){
-            /*startActivity(new Intent(getApplicationContext(),MenuActivity.class));
-            navigationView.getMenu().getItem(0).setChecked(true);
-            //return true;*/
             invalidateOptionsMenu();
             setFragment(new HomeFragment(),HOME_FRAGMENT);
             navigationView.getMenu().getItem(0).setChecked(true);
@@ -116,6 +114,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().getItem(4).setChecked(true);
         }else if(id == R.id.myAccount){
             //Todo:
+            invalidateOptionsMenu();
+            setFragment(new MyAccountFragment(),ACCOUNT_FRAGMENT);
+            navigationView.getMenu().getItem(5).setChecked(true);
         }
         else if (id == R.id.signout){
             //Todo:
