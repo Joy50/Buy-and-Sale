@@ -1,5 +1,6 @@
 package com.joy50.buysale;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,12 @@ import java.util.List;
 
 public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.ViewHolder> {
 
-    List<MyWishListModel> myWishListModelList;
+    private List<MyWishListModel> myWishListModelList;
+    private boolean wishlist;
 
-    public MyWishListAdapter(List<MyWishListModel> myWishListModelList) {
+    public MyWishListAdapter(List<MyWishListModel> myWishListModelList,boolean wishlist) {
         this.myWishListModelList = myWishListModelList;
+        this.wishlist = wishlist;
     }
 
     @NonNull
@@ -93,11 +96,23 @@ public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.Vi
             cuttedPrice.setText(cuttedPriceInfo);
             paymentMethod.setText(paymentInfo);
 
-            removeButton.setOnClickListener(new View.OnClickListener() {
+            if(wishlist){
+                removeButton.setVisibility(View.VISIBLE);
+                removeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Todo: Have to remove
+                        Toast.makeText(itemView.getContext(),"On going process",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else {
+                removeButton.setVisibility(View.GONE);
+            }
+
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Todo: Have to remove
-                    Toast.makeText(itemView.getContext(),"On going process",Toast.LENGTH_SHORT).show();
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(),ProductDetailsActivity.class));
                 }
             });
         }

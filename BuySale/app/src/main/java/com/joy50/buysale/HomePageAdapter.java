@@ -1,5 +1,6 @@
 package com.joy50.buysale;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -77,18 +78,18 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             case HomePageModel.StripAddBanner:
                 int resource = modelList.get(position).getResource();
                 String bgcolor = modelList.get(position).getBgColor();
-                ((StripAddViewHolder)holder).SetStripAdd(resource,bgcolor);
+                ((StripAddViewHolder) holder).SetStripAdd(resource, bgcolor);
                 break;
             case HomePageModel.HorizontalProductView:
                 //Todo:abc
                 String Title = modelList.get(position).getTitle();
                 List<Horizontal_Product_Scroll_Model> horizontalProductScrollModelList = modelList.get(position).getHorizontalProductScrollModelList();
-                ((HorizontalProductViewHolder)holder).setHorizontalProductLayout(horizontalProductScrollModelList,Title );
+                ((HorizontalProductViewHolder) holder).setHorizontalProductLayout(horizontalProductScrollModelList, Title);
                 break;
             case HomePageModel.GridProductView:
                 String gridTitle = modelList.get(position).getTitle();
                 List<Horizontal_Product_Scroll_Model> gridProductScrollModelList = modelList.get(position).getHorizontalProductScrollModelList();
-                ((GridProductViewHolder)holder).setGridProductLayout(gridProductScrollModelList,gridTitle );
+                ((GridProductViewHolder) holder).setGridProductLayout(gridProductScrollModelList, gridTitle);
                 break;
             default:
                 return;
@@ -208,7 +209,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public class HorizontalProductViewHolder extends RecyclerView.ViewHolder{
+    public class HorizontalProductViewHolder extends RecyclerView.ViewHolder {
 
         private TextView horizontalLayoutTitle;
         private Button horizontalViewAll;
@@ -220,12 +221,21 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             horizontalViewAll = itemView.findViewById(R.id.horizontal_scroll_layout_button);
             horizontalProductRecyclerView = itemView.findViewById(R.id.horizontal_scroll_layout_recyclerView);
         }
-        private void setHorizontalProductLayout(List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list,String title){
+
+        private void setHorizontalProductLayout(List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list, String title) {
 
             horizontalLayoutTitle.setText(title);
-            if (horizontal_product_scroll_models_list.size()>8){
+            if (horizontal_product_scroll_models_list.size() > 8) {
                 horizontalViewAll.setVisibility(View.VISIBLE);
-            }else {
+                horizontalViewAll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent viewAllIntent = new Intent(itemView.getContext(),ViewAllActivity.class);
+                        viewAllIntent.putExtra("Type",0);
+                        itemView.getContext().startActivity(viewAllIntent);
+                    }
+                });
+            } else {
                 horizontalViewAll.setVisibility(View.INVISIBLE);
             }
 
@@ -238,7 +248,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public class GridProductViewHolder extends RecyclerView.ViewHolder{
+    public class GridProductViewHolder extends RecyclerView.ViewHolder {
 
         private TextView gridProductTitle;
         private Button gridProductViewAllButton;
@@ -250,9 +260,18 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             gridProductViewAllButton = itemView.findViewById(R.id.grid_product_layout_view_all_button);
             gridProductView = itemView.findViewById(R.id.grid_product_layout_gridview);
         }
-        private void setGridProductLayout(List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list,String title){
+
+        private void setGridProductLayout(List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list, String title) {
             gridProductTitle.setText(title);
             gridProductView.setAdapter(new GridProductViewAdapter(horizontal_product_scroll_models_list));
+            gridProductViewAllButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent viewAllIntent = new Intent(itemView.getContext(),ViewAllActivity.class);
+                    viewAllIntent.putExtra("Type",1);
+                    itemView.getContext().startActivity(viewAllIntent);
+                }
+            });
         }
     }
 }
