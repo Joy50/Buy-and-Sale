@@ -1,8 +1,10 @@
 package com.joy50.buysale;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -83,7 +85,7 @@ public class CartAdapter extends RecyclerView.Adapter {
         private ImageView productImage, freeCuponsIcon;
         private TextView productTitle, freeCupons, productPrice, cuttedPrice, offerApplied, cupponApplied, productQuantity;
 
-        public CartItemViewHolder(@NonNull View itemView) {
+        public CartItemViewHolder(@NonNull final View itemView) {
             super(itemView);
             productImage = itemView.findViewById(R.id.product_cart_item_image);
             productTitle = itemView.findViewById(R.id.product_cart_item_title);
@@ -125,9 +127,9 @@ public class CartAdapter extends RecyclerView.Adapter {
 
     public class CartTotalAmountViewHolder extends RecyclerView.ViewHolder {
 
-        TextView totalItems, totalItemPrice, deliveryPrice, totalAmount, savedAmount;
+        private TextView totalItems, totalItemPrice, deliveryPrice, totalAmount, savedAmount;
 
-        public CartTotalAmountViewHolder(@NonNull View itemView) {
+        public CartTotalAmountViewHolder(@NonNull final View itemView) {
             super(itemView);
             totalItems = itemView.findViewById(R.id.total_items);
             totalItemPrice = itemView.findViewById(R.id.total_items_price);

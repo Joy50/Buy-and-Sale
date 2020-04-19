@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -28,6 +30,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private ViewPager productDetailsViewPager;
     private TabLayout productDetailsTabLayout;
+    private Button buyNow;
 
     /*Rating Layout*/
     private LinearLayout rateNowContainer;
@@ -44,6 +47,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         addToWishListButton = findViewById(R.id.addtowishlistbutton);
         productDetailsViewPager = findViewById(R.id.product_details_viewpager);
         productDetailsTabLayout = findViewById(R.id.product_details_tab_layout);
+        buyNow = findViewById(R.id.buy_now_button);
 
         List<Integer> productImages = new ArrayList<>();
         productImages.add(R.drawable.iphone11pro);
@@ -105,6 +109,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
             });
         }
         /*Rating Layout*/
+
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),DeliveryActivity.class));
+            }
+        });
     }
 
     private void setRating(int startPosition) {
