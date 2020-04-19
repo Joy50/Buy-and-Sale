@@ -21,6 +21,8 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.joy50.buysale.MenuActivity.showCart;
+
 public class ProductDetailsActivity extends AppCompatActivity {
 
     private ViewPager productImagesViewPager;
@@ -144,9 +146,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
             return true;
         }else if (id==R.id.product_add_cart){
             //Todo:Add to Cart
+            showCart = true;
+            startActivity(new Intent(getApplicationContext(),MenuActivity.class));
             return true;
         }else if (id == android.R.id.home){
             //Todo: returen to home
+            showCart = false;
             finish();
             return true;
         }

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -106,10 +107,11 @@ public class HomePageAdapter extends RecyclerView.Adapter {
     public class BannerSliderViewHolder extends RecyclerView.ViewHolder {
 
         private ViewPager bannerSliderviewPager;
-        private int currentPage = 2;
+        private int currentPage;
         private Timer timer;
         private final long DELAY_TIME = 3000;
         private final long PERIOD_TIME = 3000;
+        private List<SliderModel> arrangedList;
 
         public BannerSliderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -118,7 +120,24 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
 
         private void setBannerSliderviewPager(final List<SliderModel> sliderModelList) {
-            SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
+
+            currentPage = 2;
+            if (timer != null) {
+                timer.cancel();
+            }
+
+            arrangedList = new ArrayList<>();
+            for (int x = 0; x < sliderModelList.size(); x++) {
+                arrangedList.add(x, sliderModelList.get(x));
+            }
+
+            arrangedList.add(0,sliderModelList.get(sliderModelList.size()-2));
+            arrangedList.add(1,sliderModelList.get(sliderModelList.size()-1));
+
+            arrangedList.add(sliderModelList.get(0));
+            arrangedList.add(sliderModelList.get(1));
+
+            SliderAdapter sliderAdapter = new SliderAdapter(arrangedList);
             bannerSliderviewPager.setClipToPadding(false);
             bannerSliderviewPager.setPageMargin(20);
             bannerSliderviewPager.setCurrentItem(currentPage);
@@ -138,7 +157,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onPageScrollStateChanged(int state) {
                     if (state == ViewPager.SCROLL_STATE_IDLE) {
-                        PageLooper(sliderModelList);
+                        PageLooper(arrangedList);
                     }
                 }
             };
@@ -148,10 +167,10 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             bannerSliderviewPager.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    PageLooper(sliderModelList);
+                    PageLooper(arrangedList);
                     stopbannerSlideShow();
                     if (event.getAction() == MotionEvent.ACTION_UP) {
-                        startbannerSliderShow(sliderModelList);
+                        startbannerSliderShow(arrangedList);
                     }
                     return false;
                 }
@@ -174,7 +193,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             final Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    if (currentPage >= sliderModelList.size()) {
+                    if (currentPage >= arrangedList.size()) {
                         currentPage = 1;
                     }
                     bannerSliderviewPager.setCurrentItem(currentPage++, true);
@@ -233,8 +252,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 horizontalViewAll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent viewAllIntent = new Intent(itemView.getContext(),ViewAllActivity.class);
-                        viewAllIntent.putExtra("Type",0);
+                        Intent viewAllIntent = new Intent(itemView.getContext(), ViewAllActivity.class);
+                        viewAllIntent.putExtra("Type", 0);
                         itemView.getContext().startActivity(viewAllIntent);
                     }
                 });
@@ -267,7 +286,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         private void setGridProductLayout(List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list, String title) {
             gridProductTitle.setText(title);
 
-            for(int x = 0;x<4;x++){
+            for (int x = 0; x < 4; x++) {
                 ImageView productImage = gridLayout.getChildAt(x).findViewById(R.id.h_s_product_image);
                 TextView producttitle = gridLayout.getChildAt(x).findViewById(R.id.h_s_product_title);
                 TextView productDes = gridLayout.getChildAt(x).findViewById(R.id.h_s_product_description);
@@ -281,7 +300,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 gridLayout.getChildAt(x).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        itemView.getContext().startActivity(new Intent(itemView.getContext(),DeliveryActivity.class));
+                        itemView.getContext().startActivity(new Intent(itemView.getContext(), DeliveryActivity.class));
                     }
                 });
             }
@@ -289,8 +308,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             gridProductViewAllButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent viewAllIntent = new Intent(itemView.getContext(),ViewAllActivity.class);
-                    viewAllIntent.putExtra("Type",1);
+                    Intent viewAllIntent = new Intent(itemView.getContext(), ViewAllActivity.class);
+                    viewAllIntent.putExtra("Type", 1);
                     itemView.getContext().startActivity(viewAllIntent);
                 }
             });
