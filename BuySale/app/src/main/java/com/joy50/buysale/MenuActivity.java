@@ -8,16 +8,22 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import static com.joy50.buysale.LoginRegisterActivity.setSignUpFragment;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -69,6 +75,33 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         transaction.commit();
     }
 
+    public void cartDialog(){
+        final Dialog signIn = new Dialog(MenuActivity.this);
+        signIn.setContentView(R.layout.sign_in_dialogue);
+        signIn.setCancelable(true);
+        signIn.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        Button signInBtn = signIn.findViewById(R.id.signIn);
+        Button signUpBtn = signIn.findViewById(R.id.signup);
+        final Intent registerIntent = new Intent(MenuActivity.this,LoginRegisterActivity.class);
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn.dismiss();
+                setSignUpFragment = false;
+                startActivity(registerIntent);
+            }
+        });
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn.dismiss();
+                setSignUpFragment = false;
+                startActivity(registerIntent);
+            }
+        });
+        signIn.show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (CurrentFragment == HOME_FRAGMENT) {
@@ -93,7 +126,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.search_main_menu) {
             //todo:
         } else if (id == R.id.cart_main_menu) {
-            myCart();
+            //myCart();
+            cartDialog();
         } else if (id == R.id.notification_main_menu) {
             //todo:
         }

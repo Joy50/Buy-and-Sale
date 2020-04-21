@@ -1,28 +1,25 @@
 package com.joy50.buysale;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**
@@ -37,6 +34,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView catagoryRecyclerView;
     private CatagoryAdapter catagoryAdapter;
     private RecyclerView homePageRecyclerView;
+    private List<CatagoryModel> catagoryModelsList;
+    private FirebaseFirestore imageCatagoryFirestore;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,48 +46,55 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         catagoryRecyclerView.setLayoutManager(layoutManager);
-        List<CatagoryModel> catagoryModelsList = new ArrayList<CatagoryModel>();
-        catagoryModelsList.add(new CatagoryModel("link","Home"));
-        catagoryModelsList.add(new CatagoryModel("link","Electronics"));
-        catagoryModelsList.add(new CatagoryModel("link","Appliances"));
-        catagoryModelsList.add(new CatagoryModel("link","Furniture"));
-        catagoryModelsList.add(new CatagoryModel("link","Fashion"));
-        catagoryModelsList.add(new CatagoryModel("link","Toys"));
-        catagoryModelsList.add(new CatagoryModel("link","Sports"));
-        catagoryModelsList.add(new CatagoryModel("link","Wall Arts"));
-        catagoryModelsList.add(new CatagoryModel("link","Books"));
-        catagoryModelsList.add(new CatagoryModel("link","Shoes"));
 
+        catagoryModelsList = new ArrayList<CatagoryModel>();
         catagoryAdapter = new CatagoryAdapter(catagoryModelsList);
-        catagoryAdapter.notifyDataSetChanged();
         catagoryRecyclerView.setAdapter(catagoryAdapter);
+        imageCatagoryFirestore = FirebaseFirestore.getInstance();
+        imageCatagoryFirestore.collection("catagories").orderBy("index").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot documentSnapshots : task.getResult()) {
+                        String link = documentSnapshots.get("icon").toString();
+                        String name = documentSnapshots.get("catagoryName").toString();
+                        catagoryModelsList.add(new CatagoryModel(link,name));
+                        Toast.makeText(getContext(),"Working",Toast.LENGTH_SHORT).show();
+                    }
+                    catagoryAdapter.notifyDataSetChanged();
+                } else {
+                    String error = task.getException().getMessage();
+                    Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         /*bannerSlider*/
         List<SliderModel> sliderModelList = new ArrayList<SliderModel>();
 
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
+        sliderModelList.add(new SliderModel(R.drawable.banner, "#000000"));
+        sliderModelList.add(new SliderModel(R.drawable.banner, "#000000"));
+        sliderModelList.add(new SliderModel(R.drawable.banner, "#000000"));
+        sliderModelList.add(new SliderModel(R.drawable.banner, "#000000"));
+        sliderModelList.add(new SliderModel(R.drawable.banner, "#000000"));
+        sliderModelList.add(new SliderModel(R.drawable.banner, "#000000"));
+        sliderModelList.add(new SliderModel(R.drawable.banner, "#000000"));
+        sliderModelList.add(new SliderModel(R.drawable.banner, "#000000"));
 
         /*Banner Add layout*/
 
         /*Horizontal Product View*/
         List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list = new ArrayList<>();
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
+        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
         /*Horizontal Product View*/
 
         /*RecyclerView Testing*/
@@ -98,10 +104,10 @@ public class HomeFragment extends Fragment {
         homePageRecyclerView.setLayoutManager(testingLinearLayout);
 
         List<HomePageModel> homePageModelList = new ArrayList<>();
-        homePageModelList.add(new HomePageModel(0,sliderModelList));
-        homePageModelList.add(new HomePageModel(1,R.drawable.banner,"#000000"));
-        homePageModelList.add(new HomePageModel(2,"Deals of the day",horizontal_product_scroll_models_list));
-        homePageModelList.add(new HomePageModel(3,"New Collction",horizontal_product_scroll_models_list));
+        homePageModelList.add(new HomePageModel(0, sliderModelList));
+        homePageModelList.add(new HomePageModel(1, R.drawable.banner, "#000000"));
+        homePageModelList.add(new HomePageModel(2, "Deals of the day", horizontal_product_scroll_models_list));
+        homePageModelList.add(new HomePageModel(3, "New Collction", horizontal_product_scroll_models_list));
         HomePageAdapter homePageAdapter = new HomePageAdapter(homePageModelList);
 
         homePageRecyclerView.setAdapter(homePageAdapter);

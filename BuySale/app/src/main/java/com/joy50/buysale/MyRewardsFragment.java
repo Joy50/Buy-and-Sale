@@ -36,20 +36,18 @@ public class MyRewardsFragment extends Fragment {
         myRewardRecyclerView.setLayoutManager(layoutManager);
 
         List<MyRewardsModel> myRewardsModelList = new ArrayList<>();
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-        myRewardsModelList.add(new MyRewardsModel("Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
-
-        MyRewardsAdapter rewardsAdapter = new MyRewardsAdapter(myRewardsModelList);
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        myRewardsModelList.add(new MyRewardsModel("Rewards","Get 20% OFF on any product above $ 100 below $ 1000.","1 May 2020"));
+        MyRewardsAdapter rewardsAdapter = new MyRewardsAdapter(myRewardsModelList,false);
         myRewardRecyclerView.setAdapter(rewardsAdapter);
         rewardsAdapter.notifyDataSetChanged();
         return view;

@@ -2,12 +2,22 @@ package com.joy50.buysale;
 
 public class MyRewardsModel {
 
+    private String rewardTitle;
     private String rewardType;
     private String rewardVaildDate;
 
-    public MyRewardsModel(String rewardType, String rewardVaildDate) {
+    public MyRewardsModel(String rewardTitle, String rewardType, String rewardVaildDate) {
+        this.rewardTitle = rewardTitle;
         this.rewardType = rewardType;
         this.rewardVaildDate = rewardVaildDate;
+    }
+
+    public String getRewardTitle() {
+        return rewardTitle;
+    }
+
+    public void setRewardTitle(String rewardTitle) {
+        this.rewardTitle = rewardTitle;
     }
 
     public String getRewardType() {

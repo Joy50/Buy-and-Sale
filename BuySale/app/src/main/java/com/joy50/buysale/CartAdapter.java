@@ -1,10 +1,12 @@
 package com.joy50.buysale;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -122,12 +124,38 @@ public class CartAdapter extends RecyclerView.Adapter {
             } else {
                 cupponApplied.setVisibility(View.INVISIBLE);
             }
+            productQuantity.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Dialog quantityDialog = new Dialog(itemView.getContext());
+                    quantityDialog.setContentView(R.layout.quantity_dialog);
+                    quantityDialog.setCancelable(false);
+                    Button cancelBtn = quantityDialog.findViewById(R.id.cancel);
+                    Button okBtn = quantityDialog.findViewById(R.id.okBtn);
+                    cancelBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            quantityDialog.dismiss();
+                        }
+                    });
+                    okBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            EditText quntityNumber = quantityDialog.findViewById(R.id.quantityfild);
+                            String qunatityNo = quntityNumber.getText().toString();
+                            productQuantity.setText("Qty :"+qunatityNo);
+                            quantityDialog.dismiss();
+                        }
+                    });
+                    quantityDialog.show();
+                }
+            });
         }
     }
 
     public class CartTotalAmountViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView totalItems, totalItemPrice, deliveryPrice, totalAmount, savedAmount;
+        private TextView totalItems, totalItemPrice, deliveryPrice, totalAmount, savedAmount,productQuantity;
 
         public CartTotalAmountViewHolder(@NonNull final View itemView) {
             super(itemView);

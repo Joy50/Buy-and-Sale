@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/almost_red_gradient"
     tools:context=".RegisterFragment">
 
 
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
-        android:src="@drawable/buyandsale"
+        android:src="@drawable/icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/crossreg" />
@@ -29,6 +29,7 @@
         android:hint="Enter Your Name"
         android:inputType="textPersonName"
         android:textColorHint="@color/colorAccent"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -42,6 +43,7 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Enter Your Email Address"
+        android:textColor="@color/colorAccent"
         android:inputType="textEmailAddress"
         android:textColorHint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +61,7 @@
         android:hint="Enter Your Password"
         android:inputType="textPassword"
         android:textColorHint="@color/colorAccent"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
@@ -72,6 +75,7 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Enter Your Password Again"
+        android:textColor="@color/colorAccent"
         android:inputType="textPassword"
         android:textColorHint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,6 +88,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="8dp"
+        android:progressBackgroundTint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.918"
         app:layout_constraintStart_toStartOf="parent"

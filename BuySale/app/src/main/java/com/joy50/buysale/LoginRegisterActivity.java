@@ -10,13 +10,19 @@ import android.widget.FrameLayout;
 public class LoginRegisterActivity extends AppCompatActivity {
 
     FrameLayout frameLayout;
+    public static boolean setSignUpFragment = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
 
         frameLayout = findViewById(R.id.loginRegister);
-        setFragment(new LoginFragment());
+        if(setSignUpFragment){
+            setSignUpFragment = false;
+            setFragment(new RegisterFragment());
+        }else {
+            setFragment(new LoginFragment());
+        }
     }
 
     private void setFragment(Fragment fragment) {
