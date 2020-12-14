@@ -17,6 +17,7 @@ public class ViewAllActivity extends AppCompatActivity {
 
     private RecyclerView viewAllRecyclerView;
     private GridView viewAllGridView;
+    public static List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class ViewAllActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_all);
 
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle("Deals of the day");
+        getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewAllRecyclerView = findViewById(R.id.recyclerview);
@@ -66,19 +67,6 @@ public class ViewAllActivity extends AppCompatActivity {
             wishListAdapter.notifyDataSetChanged();
         } else if (getType == 1) {
             viewAllGridView.setVisibility(View.VISIBLE);
-
-            List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list = new ArrayList<>();
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-            horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro, "I Phone", "A2215 (Global market)", "$1099"));
-
             GridProductViewAdapter gridProductViewAdapter = new GridProductViewAdapter(horizontal_product_scroll_models_list);
             viewAllGridView.setAdapter(gridProductViewAdapter);
             gridProductViewAdapter.notifyDataSetChanged();

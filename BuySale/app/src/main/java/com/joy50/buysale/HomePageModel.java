@@ -35,20 +35,20 @@ public class HomePageModel {
     /*Banner Slider*/
 
     /*Strip Add Layout*/
-    private int resource;
+    private String resource;
     private String bgColor;
 
-    public HomePageModel(int type, int resource, String bgColor) {
+    public HomePageModel(int type, String resource, String bgColor) {
         this.type = type;
         this.resource = resource;
         this.bgColor = bgColor;
     }
 
-    public int getResource() {
+    public String  getResource() {
         return resource;
     }
 
-    public void setResource(int resource) {
+    public void setResource(String resource) {
         this.resource = resource;
     }
 

@@ -9,7 +9,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
@@ -19,8 +23,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 
 import static com.joy50.buysale.LoginRegisterActivity.setSignUpFragment;
@@ -42,6 +48,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+    private ImageView noInternetImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +59,29 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.navDrawer);
         mDrawerLayout = findViewById(R.id.navDrawer);
         navigationView.setNavigationItemSelectedListener(this);
+        noInternetImage = findViewById(R.id.no_internet_connection);
 
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         ///Testing purpose
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (showCart) {
-            //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            setFragment(new MyCartFragment(), -2);
-        } else {
-            setFragment(new HomeFragment(), HOME_FRAGMENT);
+        if(networkInfo != null && networkInfo.isConnected()==true){
+            noInternetImage.setVisibility(View.GONE);
+            if (showCart) {
+                //drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                setFragment(new MyCartFragment(), -2);
+            } else {
+                setFragment(new HomeFragment(), HOME_FRAGMENT);
+            }
+        }else {
+            //Todo:no internet connection
+            Glide.with(getApplicationContext()).load(R.drawable.noconnection).into(noInternetImage);
+            noInternetImage.setVisibility(View.VISIBLE);
         }
     }
 

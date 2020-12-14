@@ -9,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
 public class GridProductViewAdapter extends BaseAdapter {
@@ -54,7 +57,8 @@ public class GridProductViewAdapter extends BaseAdapter {
             TextView productDes = view.findViewById(R.id.h_s_product_description);
             TextView productPrice = view.findViewById(R.id.h_s_product_price);
 
-            productImage.setImageResource(modelList.get(position).getProductImage());
+            //productImage.setImageResource();
+            Glide.with(parent.getContext()).load(modelList.get(position).getProductImage()).apply(new RequestOptions().placeholder(R.drawable.iphone11pro)).into(productImage);
             productTitle.setText(modelList.get(position).getProductTitle());
             productDes.setText(modelList.get(position).getProductDes());
             productPrice.setText(modelList.get(position).getPrductPrice());

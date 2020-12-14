@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
 public class Horizontal_product_Scroll_Adapter extends RecyclerView.Adapter<Horizontal_product_Scroll_Adapter.ViewHolder> {
@@ -28,7 +31,7 @@ public class Horizontal_product_Scroll_Adapter extends RecyclerView.Adapter<Hori
 
     @Override
     public void onBindViewHolder(@NonNull Horizontal_product_Scroll_Adapter.ViewHolder holder, int position) {
-        int resource = horizontal_product_scroll_models.get(position).getProductImage();
+        String resource = horizontal_product_scroll_models.get(position).getProductImage();
         String title = horizontal_product_scroll_models.get(position).getProductTitle();
         String des = horizontal_product_scroll_models.get(position).getProductDes();
         String price = horizontal_product_scroll_models.get(position).getPrductPrice();
@@ -66,8 +69,8 @@ public class Horizontal_product_Scroll_Adapter extends RecyclerView.Adapter<Hori
                 }
             });
         }
-        private void setProductImage(int resource){
-            productImage.setImageResource(resource);
+        private void setProductImage(String resource){
+            Glide.with(itemView.getContext()).load(resource).apply(new RequestOptions().placeholder(R.drawable.iphone11pro)).into(productImage);
         }
         private void setProductName(String name){
             productName.setText(name);

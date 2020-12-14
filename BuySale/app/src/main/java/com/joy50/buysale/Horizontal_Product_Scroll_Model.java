@@ -2,23 +2,33 @@ package com.joy50.buysale;
 
 public class Horizontal_Product_Scroll_Model {
 
-    private int productImage;
+    private String productID;
+    private String productImage;
     private String productTitle;
     private String productDes;
     private String prductPrice;
 
-    public Horizontal_Product_Scroll_Model(int productImage, String productTitle, String productDes, String prductPrice) {
+    public Horizontal_Product_Scroll_Model(String productID, String productImage, String productTitle, String productDes, String prductPrice) {
+        this.productID = productID;
         this.productImage = productImage;
         this.productTitle = productTitle;
         this.productDes = productDes;
         this.prductPrice = prductPrice;
     }
 
-    public int getProductImage() {
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getProductImage() {
         return productImage;
     }
 
-    public void setProductImage(int productImage) {
+    public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 
