@@ -2,7 +2,6 @@ package com.joy50.buysale;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,21 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.joy50.buysale.DatabaseQuary.catagoryModelsList;
-import static com.joy50.buysale.DatabaseQuary.firebaseFirestore;
-import static com.joy50.buysale.DatabaseQuary.homePageModelList;
+import static com.joy50.buysale.DatabaseQuary.lists;
 import static com.joy50.buysale.DatabaseQuary.loadCatagories;
+import static com.joy50.buysale.DatabaseQuary.loadedCatagoryNames;
 import static com.joy50.buysale.DatabaseQuary.setFragmentData;
 
 
@@ -63,10 +55,13 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager testingLinearLayout = new LinearLayoutManager(getContext());
         testingLinearLayout.setOrientation(LinearLayoutManager.VERTICAL);
         homePageRecyclerView.setLayoutManager(testingLinearLayout);
-        homePageAdapter = new HomePageAdapter(homePageModelList);
-        if (homePageModelList.size()==0){
-            setFragmentData(homePageAdapter,getContext());
+        if (lists.size()==0){
+            loadedCatagoryNames.add("Home");
+            lists.add(new ArrayList<HomePageModel>());
+            homePageAdapter = new HomePageAdapter(lists.get(0));
+            DatabaseQuary.setFragmentData(homePageAdapter,getContext(),0,"HOME");
         }else {
+            homePageAdapter = new HomePageAdapter(lists.get(0));
             homePageAdapter.notifyDataSetChanged();
         }
         homePageRecyclerView.setAdapter(homePageAdapter);

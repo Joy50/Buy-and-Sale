@@ -90,7 +90,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 //Todo:abc
                 String Title = modelList.get(position).getTitle();
                 List<Horizontal_Product_Scroll_Model> horizontalProductScrollModelList = modelList.get(position).getHorizontalProductScrollModelList();
-                ((HorizontalProductViewHolder) holder).setHorizontalProductLayout(horizontalProductScrollModelList, Title);
+                List<MyWishListModel> myWishListModelList = modelList.get(position).getMyWishListModelList();
+                ((HorizontalProductViewHolder) holder).setHorizontalProductLayout(horizontalProductScrollModelList, Title,myWishListModelList);
                 break;
             case HomePageModel.GridProductView:
                 String gridTitle = modelList.get(position).getTitle();
@@ -248,7 +249,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             horizontalProductRecyclerView.setRecycledViewPool(recycledViewPool);
         }
 
-        private void setHorizontalProductLayout(List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list, final String title) {
+        private void setHorizontalProductLayout(List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list, final String title, final List<MyWishListModel> listModelList) {
 
             horizontalLayoutTitle.setText(title);
             if (horizontal_product_scroll_models_list.size() > 8) {
@@ -256,9 +257,11 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 horizontalViewAll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        ViewAllActivity.wishlistModelList = listModelList;
                         Intent viewAllIntent = new Intent(itemView.getContext(), ViewAllActivity.class);
-                        viewAllIntent.putExtra("Type", 1);
+                        viewAllIntent.putExtra("Type", 0);
                         viewAllIntent.putExtra("title",title);
+                        //viewAllIntent.putExtra("list",listModelList);
                         itemView.getContext().startActivity(viewAllIntent);
                     }
                 });

@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.joy50.buysale.DatabaseQuary.lists;
+import static com.joy50.buysale.DatabaseQuary.loadedCatagoryNames;
+
 public class CatagoryActivity extends AppCompatActivity {
 
     private RecyclerView catagoryRecyclerview;
@@ -31,47 +34,25 @@ public class CatagoryActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
 
         catagoryRecyclerview = findViewById(R.id.catagoryRecyclerView);
-
-        List<SliderModel> sliderModelList = new ArrayList<SliderModel>();
-
-        /*sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));
-        sliderModelList.add(new SliderModel(R.drawable.banner,"#000000"));*/
-
-        List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list = new ArrayList<>();
-        /*horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));
-        horizontal_product_scroll_models_list.add(new Horizontal_Product_Scroll_Model(R.drawable.iphone11pro,"I Phone","A2215 (Global market)","$1099"));*/
-
         LinearLayoutManager testingLinearLayout = new LinearLayoutManager(this);
         testingLinearLayout.setOrientation(LinearLayoutManager.VERTICAL);
         catagoryRecyclerview.setLayoutManager(testingLinearLayout);
-
-        List<HomePageModel> homePageModelList = new ArrayList<>();
-        /*homePageModelList.add(new HomePageModel(0,sliderModelList));
-        homePageModelList.add(new HomePageModel(1,R.drawable.banner,"#000000"));
-        homePageModelList.add(new HomePageModel(2,"Deals of the day",horizontal_product_scroll_models_list));
-        homePageModelList.add(new HomePageModel(3,"New Collction",horizontal_product_scroll_models_list));*/
-        HomePageAdapter homePageAdapter = new HomePageAdapter(homePageModelList);
-
+        //List<HomePageModel> homePageModelList = new ArrayList<>();
+        HomePageAdapter homePageAdapter;
+        int listPos = 0;
+        for (int i= 0;i<DatabaseQuary.loadedCatagoryNames.size();i++){
+            if (DatabaseQuary.loadedCatagoryNames.get(i).equals(title.toUpperCase())){
+                listPos = i;
+            }
+        }
+        if (listPos == 0){
+            loadedCatagoryNames.add(title.toUpperCase());
+            lists.add(new ArrayList<HomePageModel>());
+            homePageAdapter = new HomePageAdapter(lists.get(loadedCatagoryNames.size()-1));
+            DatabaseQuary.setFragmentData(homePageAdapter,getApplicationContext(),loadedCatagoryNames.size()-1,"Home");
+        }else {
+            homePageAdapter = new HomePageAdapter(lists.get(listPos));
+        }
         catagoryRecyclerview.setAdapter(homePageAdapter);
     }
 

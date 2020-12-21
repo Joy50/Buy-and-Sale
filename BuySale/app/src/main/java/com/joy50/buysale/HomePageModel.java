@@ -65,11 +65,28 @@ public class HomePageModel {
     /*Horizontal Scroll Layout*/
     private String title;
     private List<Horizontal_Product_Scroll_Model> horizontalProductScrollModelList;
+    private List<MyWishListModel> myWishListModelList;
+
 
     public HomePageModel(int type, String title, List<Horizontal_Product_Scroll_Model> horizontalProductScrollModelList) {
         this.type = type;
         this.title = title;
         this.horizontalProductScrollModelList = horizontalProductScrollModelList;
+    }
+
+    public HomePageModel(int type, String title, List<Horizontal_Product_Scroll_Model> horizontalProductScrollModelList,List<MyWishListModel> myWishListList) {
+        this.type = type;
+        this.title = title;
+        this.horizontalProductScrollModelList = horizontalProductScrollModelList;
+        this.myWishListModelList = myWishListList;
+    }
+
+    public List<MyWishListModel> getMyWishListModelList() {
+        return myWishListModelList;
+    }
+
+    public void setMyWishListModelList(List<MyWishListModel> myWishListModelList) {
+        this.myWishListModelList = myWishListModelList;
     }
 
     public String getTitle() {

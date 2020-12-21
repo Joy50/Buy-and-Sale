@@ -18,6 +18,7 @@ public class ViewAllActivity extends AppCompatActivity {
     private RecyclerView viewAllRecyclerView;
     private GridView viewAllGridView;
     public static List<Horizontal_Product_Scroll_Model> horizontal_product_scroll_models_list;
+    public static List<MyWishListModel> wishlistModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,30 +40,7 @@ public class ViewAllActivity extends AppCompatActivity {
             LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             viewAllRecyclerView.setLayoutManager(layoutManager);
-
-            List<MyWishListModel> listModelList = new ArrayList<>();
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-            listModelList.add(new MyWishListModel(R.drawable.iphone11pro, "Iphone 11 S pro", 2, "4.5", "5200", "$ 1099", "$ 2000", "Cash On Delivery Available"));
-
-            MyWishListAdapter wishListAdapter = new MyWishListAdapter(listModelList, false);
+            MyWishListAdapter wishListAdapter = new MyWishListAdapter(wishlistModelList, false);
             viewAllRecyclerView.setAdapter(wishListAdapter);
             wishListAdapter.notifyDataSetChanged();
         } else if (getType == 1) {

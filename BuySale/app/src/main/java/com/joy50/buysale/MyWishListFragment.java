@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.joy50.buysale.ViewAllActivity.wishlistModelList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +37,7 @@ public class MyWishListFragment extends Fragment {
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         wishListRecyclerView.setLayoutManager(layoutManager);
 
-        List<MyWishListModel> listModelList = new ArrayList<>();
+        /*List<MyWishListModel> listModelList = new ArrayList<>();
         listModelList.add(new MyWishListModel(R.drawable.iphone11pro,"Iphone 11 S pro",2,"4.5","5200", "$ 1099","$ 2000","Cash On Delivery Available"));
         listModelList.add(new MyWishListModel(R.drawable.iphone11pro,"Iphone 11 S pro",2,"4.5","5200", "$ 1099","$ 2000","Cash On Delivery Available"));
         listModelList.add(new MyWishListModel(R.drawable.iphone11pro,"Iphone 11 S pro",2,"4.5","5200", "$ 1099","$ 2000","Cash On Delivery Available"));
@@ -55,9 +57,9 @@ public class MyWishListFragment extends Fragment {
         listModelList.add(new MyWishListModel(R.drawable.iphone11pro,"Iphone 11 S pro",2,"4.5","5200", "$ 1099","$ 2000","Cash On Delivery Available"));
         listModelList.add(new MyWishListModel(R.drawable.iphone11pro,"Iphone 11 S pro",2,"4.5","5200", "$ 1099","$ 2000","Cash On Delivery Available"));
         listModelList.add(new MyWishListModel(R.drawable.iphone11pro,"Iphone 11 S pro",2,"4.5","5200", "$ 1099","$ 2000","Cash On Delivery Available"));
-        listModelList.add(new MyWishListModel(R.drawable.iphone11pro,"Iphone 11 S pro",2,"4.5","5200", "$ 1099","$ 2000","Cash On Delivery Available"));
+        listModelList.add(new MyWishListModel(R.drawable.iphone11pro,"Iphone 11 S pro",2,"4.5","5200", "$ 1099","$ 2000","Cash On Delivery Available"));*/
 
-        MyWishListAdapter wishListAdapter = new MyWishListAdapter(listModelList,true);
+        MyWishListAdapter wishListAdapter = new MyWishListAdapter(wishlistModelList,true);
         wishListRecyclerView.setAdapter(wishListAdapter);
         wishListAdapter.notifyDataSetChanged();
         return view;

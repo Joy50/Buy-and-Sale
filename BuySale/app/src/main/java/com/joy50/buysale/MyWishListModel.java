@@ -2,16 +2,16 @@ package com.joy50.buysale;
 
 public class MyWishListModel {
 
-    private int productImage;
+    private String productImage;
     private String productTitle;
-    private int freeCuponsAvailable;
+    private long freeCuponsAvailable;
     private String rating;
-    private String totalRating;
+    private long totalRating;
     private String productPrice;
     private String cuttedPrice;
-    private String paymentMethod;
+    private Boolean COD;
 
-    public MyWishListModel(int productImage, String productTitle, int freeCuponsAvailable, String rating, String totalRating ,String productPrice, String cuttedPrice, String paymentMethod) {
+    public MyWishListModel(String productImage, String productTitle, long freeCuponsAvailable, String rating, long totalRating, String productPrice, String cuttedPrice, Boolean COD) {
         this.productImage = productImage;
         this.productTitle = productTitle;
         this.freeCuponsAvailable = freeCuponsAvailable;
@@ -19,14 +19,14 @@ public class MyWishListModel {
         this.totalRating = totalRating;
         this.productPrice = productPrice;
         this.cuttedPrice = cuttedPrice;
-        this.paymentMethod = paymentMethod;
+        this.COD = COD;
     }
 
-    public int getProductImage() {
+    public String getProductImage() {
         return productImage;
     }
 
-    public void setProductImage(int productImage) {
+    public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 
@@ -38,11 +38,11 @@ public class MyWishListModel {
         this.productTitle = productTitle;
     }
 
-    public int getFreeCuponsAvailable() {
+    public long getFreeCuponsAvailable() {
         return freeCuponsAvailable;
     }
 
-    public void setFreeCuponsAvailable(int freeCuponsAvailable) {
+    public void setFreeCuponsAvailable(long freeCuponsAvailable) {
         this.freeCuponsAvailable = freeCuponsAvailable;
     }
 
@@ -52,6 +52,14 @@ public class MyWishListModel {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public long getTotalRating() {
+        return totalRating;
+    }
+
+    public void setTotalRating(long totalRating) {
+        this.totalRating = totalRating;
     }
 
     public String getProductPrice() {
@@ -70,19 +78,11 @@ public class MyWishListModel {
         this.cuttedPrice = cuttedPrice;
     }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
+    public Boolean getCOD() {
+        return COD;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public String getTotalRating() {
-        return totalRating;
-    }
-
-    public void setTotalRating(String totalRating) {
-        this.totalRating = totalRating;
+    public void setCOD(Boolean COD) {
+        this.COD = COD;
     }
 }

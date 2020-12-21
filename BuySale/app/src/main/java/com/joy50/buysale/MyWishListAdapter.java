@@ -11,6 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.ViewHolder> {
@@ -33,14 +37,14 @@ public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull MyWishListAdapter.ViewHolder holder, int position) {
 
-        int imageResource = myWishListModelList.get(position).getProductImage();
+        String imageResource = myWishListModelList.get(position).getProductImage();
         String title = myWishListModelList.get(position).getProductTitle();
-        int freeCupon = myWishListModelList.get(position).getFreeCuponsAvailable();
+        long freeCupon = myWishListModelList.get(position).getFreeCuponsAvailable();
         String ratinginfo = myWishListModelList.get(position).getRating();
-        String numOfRating = myWishListModelList.get(position).getTotalRating();
+        long numOfRating = myWishListModelList.get(position).getTotalRating();
         String price = myWishListModelList.get(position).getProductPrice();
         String cuttedPriceInfo = myWishListModelList.get(position).getCuttedPrice();
-        String paymentInfo = myWishListModelList.get(position).getPaymentMethod();
+        Boolean paymentInfo = myWishListModelList.get(position).getCOD();
 
         ((ViewHolder)holder).setWishList(imageResource,title,freeCupon,ratinginfo,numOfRating,price,cuttedPriceInfo,paymentInfo);
     }
@@ -74,9 +78,9 @@ public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.Vi
             paymentMethod = itemView.findViewById(R.id.wish_list_payment_method);
             removeButton = itemView.findViewById(R.id.wish_list_remove_button);
         }
-        private void setWishList(int imageResource,String title,int freeCupon,String ratinginfo,String numOfRating,String price,
-                                 String cuttedPriceInfo,String paymentInfo){
-            productImage.setImageResource(imageResource);
+        private void setWishList(String imageResource,String title,long freeCupon,String ratinginfo,long numOfRating,String price,
+                                 String cuttedPriceInfo,boolean paymentInfo){
+            Glide.with(itemView.getContext()).load(imageResource).apply(new RequestOptions().placeholder(R.drawable.iphone11pro)).into(productImage);
             productTitle.setText(title);
             if (freeCupon > 0){
                 freeCuponIcon.setVisibility(View.VISIBLE);
@@ -91,10 +95,14 @@ public class MyWishListAdapter extends RecyclerView.Adapter<MyWishListAdapter.Vi
                 freeCuponsAvailable.setVisibility(View.INVISIBLE);
             }
             rating.setText(ratinginfo);
-            totalRating.setText(numOfRating);
+            totalRating.setText(String.valueOf(numOfRating));
             productPrice.setText(price);
             cuttedPrice.setText(cuttedPriceInfo);
-            paymentMethod.setText(paymentInfo);
+            if (paymentInfo){
+                paymentMethod.setVisibility(View.VISIBLE);
+            }else {
+                paymentMethod.setVisibility(View.INVISIBLE);
+            }
 
             if(wishlist){
                 removeButton.setVisibility(View.VISIBLE);
